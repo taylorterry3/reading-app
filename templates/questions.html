@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehension Questions</title>
+</head>
+<body>
+    <h1>{{ passage.title }}</h1>
+    <p>{{ passage.content }}</p> <!-- Display the passage content here -->
+    <h2>Answer the following questions:</h2>
+    <form method="POST" action="{{ url_for('submit') }}">
+        {% for question in passage.questions %}
+            <label>{{ loop.index }}. {{ question }}</label><br>
+            <textarea name="answers" rows="3" cols="50"></textarea><br><br>
+        {% endfor %}
+        <input type="hidden" name="passage_id" value="{{ passage.id }}">
+        <button type="submit">Submit Answers</button>
+    </form>
+</body>
+</html>
